@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+package ru.hse.market.proto;
+
+option java_outer_classname = "ProductCategoryProtos";
+
+message ProductCategory {
+  uint64 id = 1;
+  string name = 2;
+  string description = 3;
+  string created_by = 4;
+  uint64 created_timestamp = 5;
+  string last_modified_by = 6;
+  uint64 last_modified_timestamp = 7;
+}
+
+message GetProductCategoryRequest {
+  uint64 id = 1;
+}
+
+message CreateProductCategoryRequest {
+  string name = 2;
+  string description = 3;
+  string created_by = 4;
+  uint64 created_timestamp = 5;
+  string last_modified_by = 6;
+  uint64 last_modified_timestamp = 7;
+}
+
+message CreateProductCategoryResponse {
+  ProductCategory product_category = 1;
+}
+
+message UpdateProductCategoryRequest {
+  uint64 id = 1;
+  string name = 2;
+  string description = 3;
+  string last_modified_by = 4;
+  uint64 last_modified_timestamp = 5;
+}
+
+message UpdateProductCategoryResponse {
+  ProductCategory product_category = 1;
+}
+
+message ListProductCategoryRequest {
+  uint64 limit = 1;
+  uint64 id = 2;
+}
+
+message ListProductCategoryResponse {
+  repeated ProductCategory product_categories = 1;
+}
+
+message DeleteProductCategoryRequest {
+  uint64 id = 1;
+}
+
+message DeleteProductCategoryResponse {
+  ProductCategory product_category = 1;
+}

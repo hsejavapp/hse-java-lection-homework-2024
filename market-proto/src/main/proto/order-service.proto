@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package ru.hse.market.proto;
+
+import "google/api/annotations.proto";
+import "google/protobuf/field_mask.proto";
+import "google/protobuf/timestamp.proto";
+import "order.proto";
+
+option java_outer_classname = "OrderServiceProto";
+
+service OrderService {
+  rpc Get(GetOrderRequest) returns (Order) {
+    option (google.api.http) = { get: "/grpc/api/orders/{id}" };
+  }
+
+  rpc List (ListOrderRequest) returns (ListOrderResponse) {
+    option (google.api.http) = { get: "/grpc/api/orders" };
+  }
+
+  rpc Create(CreateOrderRequest) returns (CreateOrderResponse) {
+    option (google.api.http) = {
+      post: "/grpc/api/orders" body: "*"
+    };
+  }
+
+  rpc Update(UpdateOrderRequest) returns (UpdateOrderResponse) {
+    option (google.api.http) = { patch: "/grpc/api/orders/{id}" body: "*" };
+  }
+
+  rpc Delete(DeleteOrderRequest) returns (DeleteOrderResponse) {
+    option (google.api.http) = { delete: "/grpc/api/orders/{id}" };
+  }
+}

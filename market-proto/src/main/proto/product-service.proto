@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package ru.hse.market.proto;
+
+import "google/api/annotations.proto";
+import "google/protobuf/field_mask.proto";
+import "google/protobuf/timestamp.proto";
+import "product.proto";
+
+option java_outer_classname = "ProductServiceProto";
+
+service ProductService {
+  rpc Get(GetProductRequest) returns (Product) {
+    option (google.api.http) = { get: "/grpc/api/products/{id}" };
+  }
+
+  rpc List (ListProductRequest) returns (ListProductResponse) {
+    option (google.api.http) = { get: "/grpc/api/products" };
+  }
+
+  rpc Create(CreateProductRequest) returns (CreateProductResponse) {
+    option (google.api.http) = {
+      post: "/grpc/api/products" body: "*"
+    };
+  }
+
+  rpc Update(UpdateProductRequest) returns (UpdateProductResponse) {
+    option (google.api.http) = { patch: "/grpc/api/products/{id}" body: "*" };
+  }
+
+  rpc Delete(DeleteProductRequest) returns (DeleteProductResponse) {
+    option (google.api.http) = { delete: "/grpc/api/products/{id}" };
+  }
+}

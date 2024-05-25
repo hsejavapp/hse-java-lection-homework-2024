@@ -1,0 +1,73 @@
+syntax = "proto3";
+
+package ru.hse.market.proto;
+
+option java_outer_classname = "ProductProtos";
+
+message Product {
+  uint64 id = 1;
+  string name = 2;
+  string description = 3;
+  string sku = 4;
+  uint64 product_pricing_id = 5;
+  uint64 product_inventory_id = 6;
+  uint64 product_category_id = 7;
+  string created_by = 8;
+  uint64 created_timestamp = 9;
+  string last_modified_by = 10;
+  uint64 last_modified_timestamp = 11;
+}
+
+message GetProductRequest {
+  uint64 id = 1;
+}
+
+message CreateProductRequest {
+  string name = 2;
+  string description = 3;
+  string sku = 4;
+  uint64 product_pricing_id = 5;
+  uint64 product_inventory_id = 6;
+  uint64 product_category_id = 7;
+  string created_by = 8;
+  uint64 created_timestamp = 9;
+  string last_modified_by = 10;
+  uint64 last_modified_timestamp = 11;
+}
+
+message CreateProductResponse {
+  Product product = 1;
+}
+
+message UpdateProductRequest {
+  uint64 id = 1;
+  string name = 2;
+  string description = 3;
+  string sku = 4;
+  uint64 product_pricing_id = 5;
+  uint64 product_inventory_id = 6;
+  uint64 product_category_id = 7;
+  string last_modified_by = 8;
+  uint64 last_modified_timestamp = 9;
+}
+
+message UpdateProductResponse {
+  Product product = 1;
+}
+
+message ListProductRequest {
+  uint64 limit = 1;
+  uint64 id = 2;
+}
+
+message ListProductResponse {
+  repeated Product products = 1;
+}
+
+message DeleteProductRequest {
+  uint64 id = 1;
+}
+
+message DeleteProductResponse {
+  Product product = 1;
+}

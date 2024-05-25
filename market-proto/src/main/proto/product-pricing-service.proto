@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package ru.hse.market.proto;
+
+import "google/api/annotations.proto";
+import "google/protobuf/field_mask.proto";
+import "google/protobuf/timestamp.proto";
+import "product-pricing.proto";
+
+option java_outer_classname = "ProductPricingServiceProto";
+
+service ProductPricingService {
+  rpc Get(GetProductPricingRequest) returns (ProductPricing) {
+    option (google.api.http) = { get: "/grpc/api/product-pricings/{id}" };
+  }
+
+  rpc List (ListProductPricingRequest) returns (ListProductPricingResponse) {
+    option (google.api.http) = { get: "/grpc/api/product-pricings" };
+  }
+
+  rpc Create(CreateProductPricingRequest) returns (CreateProductPricingResponse) {
+    option (google.api.http) = {
+      post: "/grpc/api/product-pricings" body: "*"
+    };
+  }
+
+  rpc Update(UpdateProductPricingRequest) returns (UpdateProductPricingResponse) {
+    option (google.api.http) = { patch: "/grpc/api/product-pricings/{id}" body: "*" };
+  }
+
+  rpc Delete(DeleteProductPricingRequest) returns (DeleteProductPricingResponse) {
+    option (google.api.http) = { delete: "/grpc/api/product-pricings/{id}" };
+  }
+}

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+import "empty.proto";
+
+package ru.hse.market.grpc;
+
+service EmptyPingPongService {
+  // One empty request followed by one empty response.
+  rpc EmptyCall(Empty) returns (Empty);
+}

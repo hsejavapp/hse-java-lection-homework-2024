@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+package ru.hse.market.proto;
+
+option java_outer_classname = "ProductPricingProtos";
+
+message ProductPricing {
+  uint64 id = 1;
+  double price = 2;
+  uint32 version = 3;
+  string created_by = 4;
+  uint64 created_timestamp = 5;
+  string last_modified_by = 6;
+  uint64 last_modified_timestamp = 7;
+}
+
+message GetProductPricingRequest {
+  uint64 id = 1;
+}
+
+message CreateProductPricingRequest {
+  double price = 1;
+  uint32 version = 2;
+  string created_by = 3;
+  uint64 created_timestamp = 4;
+  string last_modified_by = 5;
+  uint64 last_modified_timestamp = 6;
+}
+
+message CreateProductPricingResponse {
+  ProductPricing product_pricing = 1;
+}
+
+message UpdateProductPricingRequest {
+  uint64 id = 1;
+  double price = 2;
+  uint32 version = 3;
+  string last_modified_by = 4;
+  uint64 last_modified_timestamp = 5;
+}
+
+message UpdateProductPricingResponse {
+  ProductPricing product_pricing = 1;
+}
+
+message ListProductPricingRequest {
+  uint64 limit = 1;
+  uint64 id = 2;
+}
+
+message ListProductPricingResponse {
+  repeated ProductPricing product_pricings = 1;
+}
+
+message DeleteProductPricingRequest {
+  uint64 id = 1;
+}
+
+message DeleteProductPricingResponse {
+  ProductPricing product_pricing = 1;
+}

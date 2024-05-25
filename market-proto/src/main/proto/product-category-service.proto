@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package ru.hse.market.proto;
+
+import "google/api/annotations.proto";
+import "google/protobuf/field_mask.proto";
+import "google/protobuf/timestamp.proto";
+import "product-category.proto";
+
+option java_outer_classname = "ProductCategoryServiceProto";
+
+service ProductCategoryService {
+  rpc Get(GetProductCategoryRequest) returns (ProductCategory) {
+    option (google.api.http) = { get: "/grpc/api/product-categories/{id}" };
+  }
+
+  rpc List (ListProductCategoryRequest) returns (ListProductCategoryResponse) {
+    option (google.api.http) = { get: "/grpc/api/product-categories" };
+  }
+
+  rpc Create(CreateProductCategoryRequest) returns (CreateProductCategoryResponse) {
+    option (google.api.http) = {
+      post: "/grpc/api/product-categories" body: "*"
+    };
+  }
+
+  rpc Update(UpdateProductCategoryRequest) returns (UpdateProductCategoryResponse) {
+    option (google.api.http) = { patch: "/grpc/api/product-categories/{id}" body: "*" };
+  }
+
+  rpc Delete(DeleteProductCategoryRequest) returns (DeleteProductCategoryResponse) {
+    option (google.api.http) = { delete: "/grpc/api/product-categories/{id}" };
+  }
+}

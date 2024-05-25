@@ -1,0 +1,80 @@
+syntax = "proto3";
+
+package ru.hse.market.proto;
+
+option java_outer_classname = "ProductInventoryProtos";
+
+message ProductInventory {
+  uint64 id = 1;
+  uint32 quantity = 2;
+  string created_by = 3;
+  uint64 created_timestamp = 4;
+  string last_modified_by = 5;
+  uint64 last_modified_timestamp = 6;
+}
+
+message GetProductInventoryRequest {
+  uint64 id = 1;
+}
+
+message CreateProductInventoryRequest {
+  uint32 quantity = 1;
+  string created_by = 2;
+  uint64 created_timestamp = 3;
+  string last_modified_by = 4;
+  uint64 last_modified_timestamp = 5;
+}
+
+message CreateProductInventoryResponse {
+  ProductInventory product_inventory = 1;
+}
+
+message UpdateProductInventoryRequest {
+  uint64 id = 1;
+  uint32 quantity = 2;
+  string last_modified_by = 3;
+  uint64 last_modified_timestamp = 4;
+}
+
+message UpdateProductInventoryResponse {
+  ProductInventory product_inventory = 1;
+}
+
+message ListProductInventoryRequest {
+  uint64 limit = 1;
+  uint64 id = 2;
+}
+
+message ListProductInventoryResponse {
+  repeated ProductInventory product_inventories = 1;
+}
+
+message DeleteProductInventoryRequest {
+  uint64 id = 1;
+}
+
+message DeleteProductInventoryResponse {
+  ProductInventory product_inventory = 1;
+}
+
+message IncreaseProductInventoryRequest {
+  uint32 quantity = 2;
+  uint64 product_id = 3;
+  string last_modified_by = 4;
+  uint64 last_modified_timestamp = 5;
+}
+
+message IncreaseProductInventoryResponse {
+  ProductInventory product_inventory = 1;
+}
+
+message DecreaseProductInventoryRequest {
+  uint32 quantity = 2;
+  uint64 product_id = 3;
+  string last_modified_by = 4;
+  uint64 last_modified_timestamp = 5;
+}
+
+message DecreaseProductInventoryResponse {
+  ProductInventory product_inventory = 1;
+}

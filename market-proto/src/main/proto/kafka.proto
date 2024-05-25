@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package ru.hse.market.proto;
+
+import "order.proto";
+import "order-item.proto";
+import "product.proto";
+import "product-category.proto";
+import "product-inventory.proto";
+import "product-pricing.proto";
+
+option java_outer_classname = "TransportMessageProtos";
+
+message TransportMessage {
+  oneof payload {
+    // standard requests
+    CreateOrderRequest create_order_request = 1;
+    UpdateOrderRequest update_order_request = 2;
+    DeleteOrderRequest delete_order_request = 3;
+    CreateOrderItemRequest create_order_item_request = 4;
+    UpdateOrderItemRequest update_order_item_request = 5;
+    DeleteOrderItemRequest delete_order_item_request = 6;
+    CreateProductRequest create_product_request = 7;
+    UpdateProductRequest update_product_request = 8;
+    DeleteProductRequest delete_product_request = 9;
+    CreateProductCategoryRequest create_product_category_request = 10;
+    UpdateProductCategoryRequest update_product_category_request = 11;
+    DeleteProductCategoryRequest delete_product_category_request = 12;
+    CreateProductInventoryRequest create_product_inventory_request = 13;
+    UpdateProductInventoryRequest update_product_inventory_request = 14;
+    DeleteProductInventoryRequest delete_product_inventory_request = 15;
+    CreateProductPricingRequest create_product_pricing_request = 16;
+    UpdateProductPricingRequest update_product_pricing_request = 17;
+    DeleteProductPricingRequest delete_product_pricing_request = 18;
+
+    // additional requests
+    IncreaseProductInventoryRequest increase_product_inventory_request = 19;
+    DecreaseProductInventoryRequest decrease_product_inventory_request = 20;
+  }
+
+}

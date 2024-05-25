@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package ru.hse.market.proto;
+
+import "google/api/annotations.proto";
+import "google/protobuf/field_mask.proto";
+import "google/protobuf/timestamp.proto";
+import "product-inventory.proto";
+
+option java_outer_classname = "ProductInventoryServiceProto";
+
+service ProductInventoryService {
+  rpc Get(GetProductInventoryRequest) returns (ProductInventory) {
+    option (google.api.http) = { get: "/grpc/api/product-categories/{id}" };
+  }
+
+  rpc List (ListProductInventoryRequest) returns (ListProductInventoryResponse) {
+    option (google.api.http) = { get: "/grpc/api/product-categories" };
+  }
+
+  rpc Create(CreateProductInventoryRequest) returns (CreateProductInventoryResponse) {
+    option (google.api.http) = {
+      post: "/grpc/api/product-categories" body: "*"
+    };
+  }
+
+  rpc Update(UpdateProductInventoryRequest) returns (UpdateProductInventoryResponse) {
+    option (google.api.http) = { patch: "/grpc/api/product-categories/{id}" body: "*" };
+  }
+
+  rpc Delete(DeleteProductInventoryRequest) returns (DeleteProductInventoryResponse) {
+    option (google.api.http) = { delete: "/grpc/api/product-categories/{id}" };
+  }
+
+  rpc Increase(IncreaseProductInventoryRequest) returns (IncreaseProductInventoryResponse) {
+    option (google.api.http) = { delete: "/grpc/api/product-categories/{id}/increase" };
+  }
+
+  rpc Decrease(DecreaseProductInventoryRequest) returns (DecreaseProductInventoryResponse) {
+    option (google.api.http) = { delete: "/grpc/api/product-categories/{id}/decrease" };
+  }
+}

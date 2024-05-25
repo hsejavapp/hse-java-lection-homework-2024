@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+package ru.hse.market.proto;
+
+option java_outer_classname = "OrderItemProtos";
+
+message OrderItem {
+  uint64 id = 1;
+  uint32 quantity = 2;
+  uint64 product_id = 3;
+  uint64 product_pricing_id = 4;
+  uint64 order_id = 5;
+  string created_by = 6;
+  uint64 created_timestamp = 7;
+  string last_modified_by = 8;
+  uint64 last_modified_timestamp = 9;
+}
+
+message GetOrderItemRequest {
+  uint64 id = 1;
+}
+
+message CreateOrderItemRequest {
+  uint32 quantity = 2;
+  uint64 product_id = 3;
+  uint64 product_pricing_id = 4;
+  uint64 order_id = 5;
+  string created_by = 6;
+  uint64 created_timestamp = 7;
+  string last_modified_by = 8;
+  uint64 last_modified_timestamp = 9;
+}
+
+message CreateOrderItemResponse {
+  OrderItem order_item = 1;
+}
+
+message UpdateOrderItemRequest {
+  uint64 id = 1;
+  uint32 quantity = 2;
+  uint64 product_id = 3;
+  uint64 product_pricing_id = 4;
+  uint64 order_id = 5;
+  string last_modified_by = 6;
+  uint64 last_modified_timestamp = 7;
+}
+
+message UpdateOrderItemResponse {
+  OrderItem order_item = 1;
+}
+
+message ListOrderItemRequest {
+  uint64 limit = 1;
+  uint64 id = 2;
+  optional uint64 order_id = 3;
+}
+
+message ListOrderItemResponse {
+  repeated OrderItem order_items = 1;
+}
+
+message DeleteOrderItemRequest {
+  uint64 id = 1;
+}
+
+message DeleteOrderItemResponse {
+  OrderItem order_item = 1;
+}
