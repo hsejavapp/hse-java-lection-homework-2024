@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package ru.hse.market.proto;
+
+import "google/api/annotations.proto";
+import "google/protobuf/field_mask.proto";
+import "google/protobuf/timestamp.proto";
+import "forecast.proto";
+
+option java_outer_classname = "ForecastServiceProto";
+
+service ForecastService {
+  rpc Get(ProductForecastRequest) returns (ProductForecastResponse) {
+    option (google.api.http) = { get: "/grpc/api/forecast/product/{id}" };
+  }
+
+  rpc GetAll(ForecastRequest) returns (ForecastResponse) {
+    option (google.api.http) = { get: "/grpc/api/forecast/products" };
+  }
+}

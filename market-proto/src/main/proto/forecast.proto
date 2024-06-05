@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package ru.hse.market.proto;
+
+option java_outer_classname = "ForecastProtos";
+
+// timestamps in UTC at start of the day.
+// Forecast must have probable amount of predicted selling for each day in [day_from, day_to).
+// The requested time_period must be <= 30% of history in database.
+// History is amount of selling for each day, calculated based on Orders.
+// Otherwise, error must be returned.
+message TimePeriod {
+  uint64 day_from = 1;
+  uint64 day_to = 2;
+}
+
+enum ForecastStatus {
+  OK = 0;
+  DATA_IS_NOT_ENOUGH = 1;
+}
+
+message ProductForecastRequest {
+  uint64 product_id = 1;
+  TimePeriod time_period = 2;
+}
+
+message ProductForecastResponse {
+  uint64 product_id = 1;
+  TimePeriod time_period = 2;
+  ForecastStatus status = 3;
+  // predicted amount of selling for each day
+  repeated uint32 quantities = 4;
+}
+
+// Request for all products in database with selling history.
+message ForecastRequest {
+  TimePeriod time_period = 1;
+}
+
+message ForecastResponse {
+  repeated ProductForecastResponse product_forecast = 1;
+}
